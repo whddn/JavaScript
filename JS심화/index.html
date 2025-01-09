@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>사원관리</title>
+  <style>
+    #empList, th{
+      border: 1px solid black;
+    }
+  </style>
+</head>
+<body>
+  <div>
+    <div>
+      <div>
+        <h3>사원 정보</h3>
+      </div>
+      <table id="empInfo">
+        <tr>
+          <th>사원번호</th>
+          <td><input type="number" name="employeeId" readonly></td>
+        </tr>
+        <tr>
+          <th>이름</th>
+          <td><input type="text" name="lastName"></td>
+        </tr>
+        <tr>
+          <th>이메일</th>
+          <td><input type="text" name="email"></td>
+        </tr>
+        <tr>
+          <th>입사일자</th>
+          <td><input type="date" name="hireDate"></td>
+        </tr>
+        <tr>
+          <th>업무</th>
+          <td><input type="text" name="jobId"></td>
+        </tr>
+      </table>
+      <div>
+        <button type="button" id="init">초기화</button>
+        <button type="button" id="insert">등록</button>
+        <button type="button" id="update">수정</button>
+        <button type="button" id="del">삭제</button>
+      </div>
+    </div>
+    <hr>
+    <div>
+      <div>
+        <h3>사원 목록</h3>
+      </div>
+      <table id="empList">
+        <thead>
+          <tr>
+            <th>사원번호</th>
+            <th>이름</th>
+            <th>업무</th>
+          </tr>
+        </thead>
+        <tbody>
+          
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <script src="empMng.js"></script>
+</body>
+</html>

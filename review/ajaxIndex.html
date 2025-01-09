@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>회원관리</title>
+  <style>
+    #list, #list th, #list td {
+      border : 1px solid black;
+    }
+  </style>
+</head>
+<body>
+  <div>
+    <!-- 회원등록 및 수정, 삭제 -->
+    <div>
+      <div>
+        <h3>회원 정보</h3>
+      </div>
+      <table id="info">
+        <tr>
+          <th>번호</th>
+          <td><input type="number" name="no" readonly></td>
+        </tr>
+        <tr>
+          <th>아이디</th>
+          <td><input type="text" name="id" ></td>
+        </tr>
+        <tr>
+          <th>비밀번호</th>
+          <td><input type="password" name="password" ></td>
+        </tr>
+        <tr>
+          <th>이름</th>
+          <td><input type="text" name="name"></td>
+        </tr>
+        <tr>
+          <th>성별</th>
+          <td>
+            <select name="gender">
+              <option value="Female">여</option>
+              <option value="Male">남</option>
+            </select>
+          </td>
+        </tr>
+        <tr>
+          <th>가입날짜</th>
+          <td><input type="date" name="joinDate" ></td>
+        </tr>
+      </table>
+      <div class="btns">
+        <button type="button" id="initBtn">초기화</button>
+        <button type="button" id="insertBtn">등록</button>
+        <button type="button" id="updateBtn">수정</button>
+        <button type="button" id="delBtn">삭제</button>
+      </div>
+    </div>
+    <!-- 회원목록 -->
+    <hr>
+    <div>
+      <table id="list">
+        <thead>
+          <tr>
+            <th>번호</th>
+            <th>아이디</th>
+            <th>이름</th>
+            <th>가입일자</th>
+          </tr>
+        </thead>
+        <tbody>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <script src="ajaxJs.js"></script>
+</body>
+</html>
