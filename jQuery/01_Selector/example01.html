@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>실습예제 01</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+</head>
+
+<body>
+  <div id="date">
+    <div>
+      <input type="text" id="txDt" value="2024-12-25">
+    </div>
+    <div>
+      <p name="holiday">크리스마스 이브</p>
+      <input type="text" size="3">년
+      <input type="text" class="date", size="3">월
+      <input type="text" size="3">일
+      <button type="button">출력</button>
+    </div>
+    <div id="msg">
+      <div>
+        <label>
+          <p class="title">여기에 출력</p>
+          <input type="text" placeholder="yyyy/MM/dd">
+        </label>
+      </div>
+    </div>
+  </div>
+  <script>
+    // val() : value속성 => val('새로운 값'), val()
+    // text() : text속성 => text('새로운 값'), text()
+
+    // 1) '2024-12-25' => '2024'년'12'월'25'일
+    // hint : split()  , 문자열 -> 배열
+    // 1-1) '2024-12-25' 가져오기
+    let dateStr = $('#txDt').val();
+    // 1-2) split()을 이용해서 세 개로 쪼개기
+    let strAry = dateStr.split('-');
+    // 1-3) 3개의 <input>에 입력하기
+    let dates = $('.date').parent().children('input');
+    for (let i = 0; i < strAry.length; i++) {
+      dates[i].value = strAry[i];
+    }
+
+    $('button').on('click', function (event) {
+      // 출력 버튼을 눌렸을때
+      // 2) <p/> 태그의 '크리스마스 이브'를 가져와서 두번째 ,<p/> 태그를 변경 => '크리스마스 이브' // Hello, World';
+      let holiday = $('p[name="holiday"]').text();
+      $('label p').text(holiday + '// Hello, World');
+      
+      // 3) '2024'년'12월'25'일 -> '2024/12/24'
+      let year = $('.date').prev().val();
+      let month = $('.date').val();
+      let day = $('.date').next().val();
+
+      let newDate = `${year}/${month}/${Number(day) + 1}`;
+      $('#msg input:last').val(newDate);
+
+    })
+  </script>
+</body>
+
+</html>

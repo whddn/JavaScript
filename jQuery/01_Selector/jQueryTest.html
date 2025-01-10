@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+</head>
+
+<body>
+  <div id="app">
+    <p>제목</p>
+    <input type="text" name="title" value="제이쿼리">
+  </div>
+  <script>
+    // 1) 현재 <p> 태그가 가지고 있는 값을 출력
+    let pVal = document.getElementsByTagName('p')[0].textContent;
+    console.log(1, pVal);
+    pVal = document.querySelector('#app p').textContent;
+    console.log(2, pVal);
+    
+    pVal = jQuery('#app p').text();
+    console.log(3, pVal);
+
+    // 2) <input> 태그의 값을 'jQuery'로 변경
+    document.getElementsByName('title')[0].value = 'jQuery';
+    document.querySelector('input[name="title"]').value = 'jQuery';
+
+    jQuery('input[name="title"]').val('Hello, jQuery!');
+
+    // 3) <input> 태그의 값이 변경될 때마다 console에 출력
+    document.querySelector('input[name="title"]')
+            .addEventListener('input', function(event){
+              let inputTag = event.currentTarget;
+              let keyword = inputTag.value;
+              console.log(keyword);
+    });
+    
+    jQuery('input[name="title"]')
+            .on('input', function(event){
+              let inputTag = event.currentTarget;
+              let keyword = inputTag.value;
+              console.log('jQuery', keyword);
+            })
+  </script>
+</body>
+
+</html>
