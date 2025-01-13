@@ -37,7 +37,14 @@
       event.preventDefault();
 
       event.stopPropagation();
-    })
+    });
+
+    $('p').on('click', function(event){
+      if(event.target == event.currentTarget){
+        // 자기 자신이 이벤트를 발생한 경우에만 동작
+        $(event.currentTarget).css('background-color', 'skyblue');
+      }
+    });
   </script>
 </body>
 </html>
