@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>이벤트 03</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+</head>
+<body>
+  <div onclick="alert('내용이 수정되었습니다')">
+    <p onclick="alert('버튼1');">
+      <a href="https://www.naver.com" class="btn1">버튼1</a>
+    </p>
+    <p class="txt1">내용1</p>
+    <p onclick="alert('버튼2');">
+      <a href="https://www.google.com" class="btn2">버튼2</a>
+    </p>
+    <p class="txt2">내용2</p>
+    <p>
+      <button class="btn3">버튼3</button>
+    </p>
+    <p class="txt3">내용3</p>
+  </div>
+  <script>
+    /*
+      - 이벤트 객체 : 자동생성
+      필드
+        target          : 고정값, 실제 이벤트가 발생한 태그
+        currentTarget   : 유동값, 이벤트 핸들러가 등록된 태그
+      메서드
+        preventDefault()  : 기본 이벤트 막는 메서드
+        stopPropagation() : 이벤트 버블링을 멈춤
+    */
+
+    // a 태그 모두 기본 이벤트 동작을 막고 이벤트 버블링을 멈춤
+    $('a').on('click', function(event){
+      event.preventDefault();
+
+      event.stopPropagation();
+    })
+  </script>
+</body>
+</html>

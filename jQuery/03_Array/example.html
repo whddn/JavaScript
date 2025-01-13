@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>예제1</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+</head>
+<body>
+  
+  <script>
+    let data = [
+      { "area": "서울",  "dept": "영업", "name": "무대리" },
+      { "area": "부산",  "dept": "영업", "name": "홍과장" },
+      { "area": "대전",  "dept": "생산", "name": "박사장" },
+      { "area": "서울",  "dept": "생산", "name": "김부장" }
+    ];
+    </script>
+
+    <div id="list">
+    <ul>
+      <!-- 근무지역 서울인 사원이름 -->
+    </ul>
+    <ul>
+      <!-- 근무하는 부서가 생산인 사원이름-->
+    </ul>
+  </div>
+  <script>
+   // 근무지역 서울인 사원이름
+   let ulTag = $('#list ul:first-of-type');
+   $(data).each(function(idx, emp){
+    if(emp.area == "서울"){
+      let liTag = $('<li></li>').text(emp.name);
+      ulTag.append(liTag);
+    }
+   });
+
+   // 근무하는 부서가 생산인 사원이름
+   // 1) 새로운 배열 생성
+   let empList = $.map(data, function(emp, idx){
+    if(emp.dept == "생산"){
+      return emp.name;
+    }
+   });
+   // 2) 그 배열을 기반으로 <li/> 태그 생성
+   ulTag = $('#list ul:last-child');
+   $.each(empList, function(idx, emp){
+     // 3) <ul/> 태그에 추가
+     ulTag.append(`<li>${emp}</li>`);
+    });
+
+  </script>
+
+</body>
+</html>
