@@ -3,8 +3,21 @@ init();
 // 최초 셋팅
 function init() {
   // 각 태그의 이벤트 처리 : 처음부터 존재하는 태그만 가능
-  // 초기화 버튼
+  // 검색 버튼
+  $('button#searchBtn').on('click', searchUserInfo);
 
+  // 초기화 버튼
+  $('button#initBtn').on('click', function(event){
+    //입력태그 초기화
+    let tags =$('#info input, #info select'); //1번
+    tags = $('#info').find('input, select');  //2번
+
+    // 2) 입력태그의 value 속성 초기화
+    tags.each(function(idx, tag){
+      tag.value ='';
+    })
+
+  })
   // 등록 버튼
   $('button#insertBtn').on('click', addUserInfo);
 
@@ -181,15 +194,39 @@ function updateUserInfo(event) {
 }
 
 function deleteUserInfo(event){
-  
+  // 삭제하고 싶은 회원정보를 서버에서 삭제
+
+  // 1) 현재 입력한 회원정보 확인 : 회원이 가지고 있는 id
   let userId = $('#info input[name="id"]').val();
-  
-  $.ajax(`http://192.168.0.11:8099//userDelete?id=${userId}`)
+
+  // 서버에 전송 : AJAX
+  $.ajax(`http://192.168.0.11:8099/userDelete?id=${userId}`)
   .done(result => {
-    $('#info [name]').val('');
+   if(result == null){
+    alert('정상적으로 삭제되지 않았습니다');
+   }else{
+    alert('해당 자료가 삭제되었습니다.')
     getUserList();
+   }
   })
   .fail(err => console.log(err));
 }
 
-  
+function searchUserInfo(event){
+  // 사용자가 원하는 검색정보를 기준으로 서버에서 회원정보 조회
+
+  // 사용자가 원하는 검색 정보를 확인 : 검색조건(아이디 or 이름), 검색어
+  let btnTag = event.currentTarget;
+  let selectTag = btnTag.previousElementSibling.previousElementSibling;
+  let searchOption = selectTag.value;
+  let inputTag = btnTag.previousElementSibling;
+  let searchKeyword = inputTag.value;
+  console.log(searchOption, searchKeyword);
+
+  // 서버에 전송 : AJAX
+  $.ajax(`http://192.168.0.11:8099/userList?${searchOption}=${searchKeyword}`)
+  .done(result =>{
+    console.log(result);
+  })
+  .fail(err => console.log(err));
+}
